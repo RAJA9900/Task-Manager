@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'priority'
+  name: 'priority',standalone:true
 })
 export class PriorityPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: 1|2|3): String {
+    return value === 1 ? 'High' : value===2?'Medium':'Low';
   }
 
 }

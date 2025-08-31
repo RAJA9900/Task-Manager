@@ -1,1 +1,16 @@
-<p>task-item works!</p>
+<article class="card" [ngClass]="{done:
+task.completed}" [appHighlight]="isOverdue ? 'rgba(244, 63, 94, 0.15)' : null">
+    <header>
+        <h3>{{ task.title }}</h3>
+        <span class="pill">{{ task.priority | priority }}</span>
+    </header>
+    <p>{{ task.description | truncate:140 }}</p>
+    <footer>
+        <small *ngIf="task.dueDate">Due: {{ task.dueDate | date:'mediumDate' }}</ small>
+            <span class="spacer"></span>
+            <a [routerLink]="['/tasks', task.id]">Edit</a>
+            <button (click)="toggle.emit(task.id)">{{ task.completed ? 'Undo' :
+                'Done' }}</button>
+            <button class="danger" (click)="remove.emit(task.id)">Delete</button>
+    </footer>
+</article>

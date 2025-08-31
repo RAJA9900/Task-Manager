@@ -1,1 +1,23 @@
-<p>task-list works!</p>
+<section class="tools">
+    <input type="search" [(ngModel)]="q" placeholder="Search tasks…" />
+    <select [(ngModel)]="cat">
+        <option value="">All Categories</option>
+        <option *ngFor="let c of categories()" [value]="c.id">{{ c.name }}</ option>
+    </select>
+    <select [(ngModel)]="prio">
+        <option value="">Any Priority</option>
+        <option value="1">High</option>
+        <option value="2">Medium</option>
+        <option value="3">Low</option>
+    </select>
+    <label><input type="checkbox" [(ngModel)]="hideDone"> Hide completed</ label>
+</section>
+<section class="grid" *ngIf="filtered().length; else empty">
+    <app-task-item *ngFor="let t of filtered()" [task]="t" (remove)="onRemove($event)"
+        (toggle)="onToggle($event)"></app-task-item>
+</section>
+
+<ng-template #empty>
+<p>No tasks yet. Click <a routerLink="/tasks/new">"New"</a> to create
+one.</p>
+</ng-template>

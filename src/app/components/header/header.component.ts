@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone:true,
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  private auth = inject(AuthService);
+
+  toggleAdmin() {
+    this.auth.toggleAdmin();
+  }
 
 }

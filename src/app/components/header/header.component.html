@@ -1,1 +1,11 @@
-<p>header works!</p>
+<header class="hdr">
+<h1>Task Manager</h1>
+
+<nav>
+<a routerLink="/tasks"
+routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Tasks</a>
+<a routerLink="/categories" routerLinkActive="active">Categories</a>
+<a routerLink="/tasks/new" class="btn">+ New</a>
+<button class="btn ghost" (click)="toggleAdmin()">Toggle Admin</button>
+</nav>
+</header>
